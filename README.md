@@ -22,36 +22,32 @@ sudo openvpn --config cloud-bastion.ovpn
 ```
 ### **Подключене по SSH**
 
-**Добавим ssh-ключ в ssh-agent**
+Добавим ssh-ключ в ssh-agent
 ```
 ssh-add ~/.ssh/id_rsa.pub
 ```
-**Подключение к bastion**
+Подключение к bastion
 ```
 ssh 35.195.232.196.xip.io
 ssh 35.195.232.196
 ```
 
-**Подключение к someinternalhost в одну строку**
+Подключение к someinternalhost в одну строку
 ```
 ssh -A -J 35.195.232.196 ssh 10.132.0.3
 ```
-**Пля подключения по алиасу someinternalhost**
-**в файл ~/.ssh/config добавить следующие строки**
+Пля подключения по алиасу someinternalhost
+в файл ~/.ssh/config добавить следующие строки
 ```
 Host someinternalhost
 	HostName 10.132.0.3
 	ProxyJump 35.195.232.196 
 ```
-**далее подключаться
+далее подключаться
 ```
 ssh someinternalhost
 ```
 
-
-
-
-
-
 bastion_IP = 35.195.232.196
+
 someinternalhost_IP = 10.132.0.3

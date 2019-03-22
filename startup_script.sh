@@ -14,7 +14,7 @@ sudo systemctl enable mongod
 sudo systemctl start mongod
 
 # install and start puma
-cd $HOME
+cd /opt
 git clone -b monolith https://github.com/express42/reddit.git
 
 # bundle install

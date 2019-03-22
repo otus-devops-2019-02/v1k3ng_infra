@@ -1,3 +1,11 @@
+# Readme homework #6
+
+
+
+testapp_IP = 35.198.167.169  
+testapp_port = 9292
+
+
 # Readme homework #5
 
 ### **В GCP созданы два инстанса:**
@@ -47,7 +55,37 @@ Host someinternalhost
 ```
 ssh someinternalhost
 ```
-
-bastion_IP = 35.195.232.196
+bastion_IP = 35.195.232.196  
 someinternalhost_IP = 10.132.0.3
+
+# Readme homework #4
+
+* Склонирован репозиторий v1k3ng_infra
+```
+git clone git@github.com:otus-devops-2019-02/v1k3ng_infra.git
+```
+* Создана ветка play-travis
+```
+git checkout -b play-travis
+```
+* Создан файл .github/PULL_REQUEST_TEMPLATE.md
+* Создан отдельный канал в slack, добавлена интеграция с github
+```
+/github subscribe Otus-DevOps-2019-02/<GITHUB_USER>_infra commits:all
+```
+* Создана интеграция с TravisCI (добавлен файл .travis.yml, настроен slack)
+* Токен TravisCI зашифрован
+```
+gem install travis
+travis login --com
+travis encrypt "devops-team-otus:<token>#maksim_demenev" --add notifications.slack.rooms --com
+```
+
+# Readme homework #3
+
+* В ЛК Otus подключен аккаунт github
+* Сделан форк репозитория practice-git
+* Репозиторий склонирован на локальную машину
+* Создан файл maksim-demenev.txt
+* Создан и смерджен PR к основному репозиторию
 

@@ -1,7 +1,10 @@
 # Readme homework #6
 
-
-startup_script.sh
+Для передачи **локального** startup_script команде gcloud нужно добавить опцию
+```
+--metadata-from-file startup-script=
+```
+Пример полноценной команды gcloud для создания инстанса и запуска **локального** startup_script. При этом, вы должны находиться в директории, в котрой лежит файл startup_script.sh. Файл startup_script.sh добавлен в github репозиторий.
 ```
 gcloud compute instances create reddit-app \
         --boot-disk-size=10GB \
@@ -11,10 +14,64 @@ gcloud compute instances create reddit-app \
         --tags puma-server \
         --restart-on-failure \
         --metadata-from-file startup-script=./startup_script.sh
+```
+Основные варианты команды gsutil:
+Список bucket'ов:
+```
+gsutil ls
+```
+Создать bucket:
+```
+gsutil mb gs://<bucket_name>
+```
+Скопировать файл в bucket:
+```
+gsutil cp <file_name> gs://<bucket_name>
+```
+Содержимое bucket'а:
+```
+gsutil ls gs://<bucket_name>
+```
+Удалить файл из bucket'а:
+```
+gsutil rm gs://<bucket_name>/<file_name>
+```
+Удалить bucket:
+```
+gsutil rb gs://<bucket_name>
+```
+Для передачи **удаленного** startup_script команде gcloud нужно добавить опцию
+```
+--metadata startup-script-url=gs://<bucket>/<file>
+```
+Пример полноценной команды gcloud для создания инстанса и запуска **удаленного** startup_script.
+```
+gcloud compute instances create reddit-app \
+        --boot-disk-size=10GB \
+        --image-family ubuntu-1604-lts \
+        --image-project=ubuntu-os-cloud \
+        --machine-type=g1-small \
+        --tags puma-server \
+        --restart-on-failure \
+        --metadata startup-script-url=gs://v1k3ng_bkt/startup_script.sh
+```
+Не забудьте поменять **startup-script-url** на свой.
 
+Для удаления правила **default-puma-server** из правил firewall можно воспользоваться командой:
+```
+gcloud compute firewall-rules delete default-puma-server
+```
+Для создания правила **default-puma-server** из правил firewall можно воспользоваться командой:
+```
+gcloud compute firewall-rules create default-puma-server \
+        --allow=tcp:9292 \
+        --direction=INGRESS \
+        --source-ranges=0.0.0.0/0 \
+        --network=default \
+        --target-tags=puma-server
 ```
 
-testapp_IP = 35.187.96.0  
+testapp_IP = 35.195.232.196  
 testapp_port = 9292
 
 
@@ -70,6 +127,7 @@ ssh someinternalhost
 bastion_IP = 35.195.232.196  
 someinternalhost_IP = 10.132.0.3
 
+
 # Readme homework #4
 
 * Склонирован репозиторий v1k3ng_infra
@@ -92,6 +150,7 @@ gem install travis
 travis login --com
 travis encrypt "devops-team-otus:<token>#maksim_demenev" --add notifications.slack.rooms --com
 ```
+
 
 # Readme homework #3
 

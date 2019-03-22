@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Ruby install
+# ruby install
 # update info about repo
 sudo apt update
 

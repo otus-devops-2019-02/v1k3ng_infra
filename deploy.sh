@@ -13,5 +13,3 @@ bundle install
 # start server
 puma -d
 
-
-

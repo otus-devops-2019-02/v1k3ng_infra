@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Install Mongo-DB
+# install Mongo-DB
 
 # add key
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
@@ -13,4 +13,8 @@ sudo apt update
 
 # install package
 sudo apt install -y mongodb-org
+
+# enable and start mongodb
+sudo systemctl enable mongod
+sudo systemctl start mongod
 

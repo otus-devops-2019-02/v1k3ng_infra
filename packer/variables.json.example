@@ -1,0 +1,7 @@
+{
+    "variables":{
+            "var_project_id": "example_var",
+            "var_source_image_family": "example_var2"
+    }
+}
+

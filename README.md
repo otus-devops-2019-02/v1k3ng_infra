@@ -1,3 +1,43 @@
+# Readme homework #7
+
+Проверка json-файла для packer на ошибки:
+```
+packer validate <filename.json>
+packer validate -var-file=<file_whith_vars.json> <filename.json>
+```
+Создание образа из json-файла для packer:
+```
+packer build <filename.json>
+packer build -var-file=<file_whith_vars.json> <filename.json>
+```
+Работа с gcloud:
+```
+gcloud compute instances list # список инстансов
+gcloud compute instances delete reddit-app # удаление инстанса
+gcloud compute images list | grep redd # выборка образа по имени
+gcloud compute images delete <image_name> # удаление образа
+```
+Два варианта создания инстанса из образа, подготовленного packer'ом:
+ - Выбрать конкретный образ в проекте:
+```
+gcloud compute instances create reddit-app \
+        --image-project=ubuntu-os-cloud \
+        --machine-type=g1-small \
+        --tags puma-server \
+        --restart-on-failure \
+        --image-project=infra-235110 \
+        --image=reddit-full-1553758184
+```
+- Выбрать последний образ в **image family**:
+```
+gcloud compute instances create reddit-app \
+        --machine-type=g1-small \
+        --tags puma-server \
+        --restart-on-failure \
+        --image-family=reddit-full
+```
+
+
 # Readme homework #6
 
 Для передачи **локального** startup_script команде gcloud нужно добавить опцию

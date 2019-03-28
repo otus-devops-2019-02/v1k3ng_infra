@@ -1,0 +1,14 @@
+[Unit]
+Description=Puma
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/appuser/reddit/
+User=appuser
+ExecStart=/bin/bash -lc 'bundle exec puma -C /home/appuser/reddit/config/deploy/production.rb'
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

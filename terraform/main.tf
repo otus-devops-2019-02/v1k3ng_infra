@@ -18,7 +18,6 @@ resource "google_compute_project_metadata" "default" {
 
   metadata {
     ssh-keys = "appuser:${file(var.public_key_path)}"
-    ssh-keys = "appuser1:${file(var.public_key_path)}"
   }
 }
 

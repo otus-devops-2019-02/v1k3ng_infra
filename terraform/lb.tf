@@ -35,6 +35,7 @@ resource "google_compute_target_pool" "default" {
 
   instances = [
     "${var.zone}/reddit-app",
+    "${var.zone}/reddit-app2",
   ]
 
   health_checks = [

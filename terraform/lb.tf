@@ -31,11 +31,12 @@
 // }
 
 resource "google_compute_target_pool" "default" {
-  name = "reddit-pool"
+  name    = "reddit-pool"
+  project = "${var.project}"
 
   instances = [
-    "${var.zone}/reddit-app",
-    "${var.zone}/reddit-app2",
+    "${var.zone}/reddit-app0",
+    "${var.zone}/reddit-app1",
   ]
 
   health_checks = [

@@ -1,3 +1,50 @@
+# Readme homework #8
+
+**main.tf** - главный конфигурационный файл terraform  
+**lb.tf** - описание load-balancer  
+**outputs.tf** - список выходных переменных  
+**variables.tf** - определение переменных  
+**terraform.tfvars** - список и заничения переменных  
+**terraform.tfstate** - текущее состояние  
+**terraform.tfstate.backup** - предыдущее состояние  
+
+Основы terraform:
+ - **terraform init** # инициировать рабочую директорию, загрузить указанные провайдеры
+ - **terraform plan** # показать планируемые изменения относительно текущего состояния
+ - **terraform apply** # применить изменения
+ - **terraform show** # показать текущее состояние
+ - **terraform taint** # пометить ресурс для пересоздания
+ - **terraform destroy** # пометить ресурс для пересоздания
+ - **terraform fmt** # произвести форматирование файлов terraform
+
+Использование count:
+```
+count        = "2"
+```
+```
+name         = "reddit-app${count.index}"
+```
+
+Чтобы получить значение пользовательской
+переменной внутри ресурса используется синтаксис:
+```
+"${var.var_name}".
+```
+
+В **main.tf** добавить для валидности:
+```
+required_version = ">=0.11,<0.12"
+```
+
+Установить автодополнение для terraform:
+```
+terraform -install-autocomplete
+```
+
+Web-ресурсы:
+ - https://www.terraform.io/docs/providers/google/index.html
+
+
 # Readme homework #7
 
 Проверка json-файла для packer на ошибки:

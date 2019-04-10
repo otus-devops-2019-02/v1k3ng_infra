@@ -37,3 +37,6 @@ variable app_disk_image {
 //   default     = "reddit-db-base"
 // }
 
+variable machine_type {
+  default = "g1-small"
+}

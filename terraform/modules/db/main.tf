@@ -1,6 +1,6 @@
 resource "google_compute_instance" "db" {
   name         = "reddit-db"
-  machine_type = "g1-small"
+  machine_type = "${var.machine_type}"
   zone         = "${var.zone}"
 
   # определение загрузочного диска

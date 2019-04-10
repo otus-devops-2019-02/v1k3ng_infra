@@ -6,8 +6,8 @@
         {
             "type": "googlecompute",
             "project_id": "{{user `var_project_id`}}",
-            "image_name": "reddit-base-app-{{timestamp}}",
-            "image_family": "reddit-base-app",
+            "image_name": "reddit-app-base-{{timestamp}}",
+            "image_family": "reddit-app-base",
             "source_image_family": "{{user `var_source_image_family`}}",
             "zone": "europe-west1-b",
             "ssh_username": "appuser",

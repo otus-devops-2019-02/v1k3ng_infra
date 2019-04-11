@@ -13,6 +13,14 @@ provider "google" {
   region  = "${var.region}"
 }
 
+// resource "google_storage_bucket" "default" {
+//   name = "storage-bucket-for-state-v1k3ng"
+//   force_destroy = "true"
+//   versioning {
+//     enabled = "true"
+//   }
+// }
+
 resource "google_compute_project_metadata" "default" {
   project = "${var.project}"
 

@@ -28,23 +28,30 @@ resource "google_compute_instance" "db" {
 
   tags = ["reddit-db"]
 
-  //   connection {
-  //     type  = "ssh"
-  //     user  = "appuser"
-  //     agent = false
+  connection {
+    type  = "ssh"
+    user  = "appuser"
+    agent = false
 
-  //     # путь до приватного ключа
-  //     private_key = "${file(var.private_key_path)}"
-  //   }
+    # путь до приватного ключа
+    private_key = "${file(var.private_key_path)}"
+  }
 
-  //   provisioner "file" {
-  //     source      = "files/puma.service"
-  //     destination = "/tmp/puma.service"
-  //   }
+  // provisioner "file" {
+  //   source      = "files/puma.service"
+  //   destination = "/tmp/puma.service"
+  // }
 
-  //   provisioner "remote-exec" {
-  //     script = "files/deploy.sh"
-  //   }
+  provisioner "remote-exec" {
+    // inline = [
+    //   "sudo sed -i 's/bindIp: 127.0.0.1/bindIp: ${var.app_internal_ip}/;' /etc/mongod.conf",
+    //   "sudo systemctl restart mongod.service",
+    //   ]
+    inline = [
+      "sudo sed -i 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/;' /etc/mongod.conf",
+      "sudo systemctl restart mongod.service",
+    ]
+  }
 }
 
 resource "google_compute_firewall" "firewall_mongo" {

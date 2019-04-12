@@ -18,9 +18,9 @@ variable public_key_path {
 //   description = "Disk image"
 // }
 
-// variable private_key_path {
-//   description = "Private key"
-// }
+variable private_key_path {
+  description = "Private key"
+}
 
 variable zone {
   description = "Zone"
@@ -40,3 +40,5 @@ variable db_disk_image {
 variable machine_type {
   default = "g1-small"
 }
+
+variable app_internal_ip {}

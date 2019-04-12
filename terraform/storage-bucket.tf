@@ -17,8 +17,9 @@ output storage-bucket_url {
 }
 
 resource "google_storage_bucket" "default" {
-  name = "storage-bucket-for-state-v1k3ng"
+  name          = "storage-bucket-for-state-v1k3ng"
   force_destroy = "true"
+
   versioning {
     enabled = "true"
   }

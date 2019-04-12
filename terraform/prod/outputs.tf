@@ -9,5 +9,6 @@
 // }
 
 output "app_external_ip" {
-  value = "${module.app.app_external_ip}"
+  value       = "http://${module.app.app_external_ip}:9292"
+  description = "The URI of the created resource."
 }

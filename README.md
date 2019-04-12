@@ -1,3 +1,115 @@
+# Readme homework #9
+
+Импорт имеющейся конфигурации в state-файл:  
+```
+terraform import google_compute_firewall.firewall_ssh default-allow-ssh
+```
+Ссылку в одном ресурсе на атрибуты другого тераформ
+понимает как зависимость одного ресурса от другого. Это влияет на очередность создания и удаления ресурсов при применении изменений.  
+Terraform поддерживает также явную зависимость используя
+параметр **depends_on**.
+
+Чтобы начать использовать модули, нам нужно сначала их
+загрузить из указанного источника **source**.
+```
+terraform get
+```
+### Задание на странице 42:
+Для того чтобы вынести state-файл куда-либо из локального backend'а
+```
+terraform {
+  backend "gcs" {
+    bucket = "storage-bucket-for-state-v1k3ng"
+    prefix = "stage"
+  }
+}
+
+terraform init
+terraform apply
+```
+В итоге state-файл перенесентся в указанный удаленный backend. Ничего не потеряется. Ниже пример блокировки:
+```
+Acquiring state lock. This may take a few moments...
+
+Error: Error locking state: Error acquiring the state lock: writing "gs://storage-bucket-for-state-v1k3ng/stage/default.tflock" failed: googleapi: Error 412: Precondition Failed, conditionNotMet
+Lock Info:
+  ID:        <ID>
+  Path:      gs://<bucket_name>/<prefix_name>/default.tflock
+  Operation: OperationTypeApply
+  Who:       user@host
+  Version:   0.11.13
+  Created:   2019-04-11 12:23:41.8817071 +0000 UTC
+  Info:      
+
+
+Terraform acquires a state lock to protect the state from being written
+by multiple users at the same time. Please resolve the issue above and try
+again. For most commands, you can disable locking with the "-lock=false"
+flag, but this is not recommended.
+```
+### Задание на странице 43:
+В файл создания инстанса с приложением добавлены провизионеры:
+```
+  provisioner "file" {
+    source      = "${path.module}/files/puma.service"
+    destination = "/tmp/puma.service"
+  }
+
+  provisioner "remote-exec" {
+    script = "${path.module}/files/deploy.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo sed -i 's/#Environment=DATABASE_URL=VALUE/Environment=DATABASE_URL=${var.db_internal_ip}/;' /etc/systemd/system/puma.service",
+      "sudo systemctl daemon-reload",
+      "sudo systemctl restart puma.service",
+    ]
+  }
+```
+Необходимые для деплоя файлы расположены в modules/app/files.  
+
+Добавление workaround-решения вместо IF..THEN.
+В модуле app объявлена новая переменная **need_deploy**
+```
+variable need_deploy {}
+```
+В файл modules/app/main.tf добавлен null_resource:
+```
+resource "null_resource" "app" {
+  count = "${var.need_deploy == true ? 1 : 0}"
+
+  connection {
+    type  = "ssh"
+    user  = "appuser"
+    agent = false
+
+    # путь до приватного ключа
+    private_key = "${file(var.private_key_path)}"
+    host = "${google_compute_instance.app.network_interface.0.access_config.0.nat_ip}" 
+  }
+
+  provisioner "file" {
+    source      = "${path.module}/files/puma.service"
+    destination = "/tmp/puma.service"
+  }
+
+  provisioner "remote-exec" {
+    script = "${path.module}/files/deploy.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo sed -i 's/#Environment=DATABASE_URL=VALUE/Environment=DATABASE_URL=${var.db_internal_ip}/;' /etc/systemd/system/puma.service",
+      "sudo systemctl daemon-reload",
+      "sudo systemctl restart puma.service",
+    ]
+  }  
+}
+```
+Регулировать деплой можно, меняя значение переменной **need_deploy** в файле /{stage, prod}/terraform.tfvars
+
+
 # Readme homework #8
 
 ### Задание на странице 51:

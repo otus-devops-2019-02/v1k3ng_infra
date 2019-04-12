@@ -29,6 +29,7 @@ module "app" {
   app_disk_image   = "${var.app_disk_image}"
   machine_type     = "${var.machine_type}"
   db_internal_ip   = "${module.db.db_internal_ip}"
+  need_deploy      = "${var.need_deploy}"
 }
 
 module "db" {

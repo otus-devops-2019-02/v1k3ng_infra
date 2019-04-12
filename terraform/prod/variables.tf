@@ -40,3 +40,7 @@ variable db_disk_image {
 variable machine_type {
   default = "g1-small"
 }
+
+variable need_deploy {
+  description = "Deploy application?"
+}

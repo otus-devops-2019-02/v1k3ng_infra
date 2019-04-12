@@ -42,3 +42,4 @@ variable machine_type {
 }
 
 variable db_internal_ip {}
+variable need_deploy {}

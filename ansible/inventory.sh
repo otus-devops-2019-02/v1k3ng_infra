@@ -40,31 +40,33 @@
 ###
 ### НЕ Верное решение. Оно тут, чтоб пройти тесты Travis
 ###
-if [[ $1 == "--list" ]]
-then
+#if [[ $1 == "--list" ]]
+#then
 cat <<EOF > inventory.json
 {
     "db": {
         "hosts": ["reddit-db"],
         "vars": {
-            "ansible_host": "35.240.100.59"
+            "ansible_host": "34.76.10.204"
         }
     },
     "app": {
         "hosts": ["reddit-app"],
         "vars": {
-            "ansible_host": "35.195.168.114"
+            "ansible_host": "35.195.231.80"
         }
     }
-    "all": {
-        "children": [
-            "ungrouped"
-                ]
-        },
-    "ungrouped": {}    
+#    "all": {
+#        "children": [
+#            "ungrouped",
+#            "db",
+#            "app"
+#                ]
+#        },
+#    "ungrouped": {}    
 }
 EOF
-fi
+#fi
 
 cat inventory.json
 

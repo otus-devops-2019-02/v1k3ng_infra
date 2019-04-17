@@ -65,5 +65,6 @@ cat <<EOF > inventory.json
 }
 EOF
 fi
+
 cat inventory.json
 

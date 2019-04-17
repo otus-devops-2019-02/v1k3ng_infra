@@ -26,12 +26,6 @@
 #             "ansible_host": "$app_ip"
 #         }
 #     }
-#     "all": {
-#         "children": [
-#             "ungrouped"
-#                 ]
-#         },
-#     "ungrouped": {}    
 # }
 # EOF
 # cat inventory.json

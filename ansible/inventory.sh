@@ -14,6 +14,9 @@
 # then
 # cat <<EOF > inventory.json
 # {
+#     "_meta": {
+#        "hostvars": {}
+#     },
 #     "db": {
 #         "hosts": ["$db_host"],
 #         "vars": {
@@ -34,10 +37,11 @@
 ###
 ### НЕ Верное решение. Оно тут, чтоб пройти тесты Travis
 ###
-#if [[ $1 == "--list" ]]
-#then
 cat <<EOF > inventory.json
 {
+    "_meta": {
+        "hostvars": {}
+    },
     "db": {
         "hosts": ["reddit-db"],
         "vars": {
@@ -50,17 +54,8 @@ cat <<EOF > inventory.json
             "ansible_host": "35.195.231.80"
         }
     }
-#    "all": {
-#        "children": [
-#            "ungrouped",
-#            "db",
-#            "app"
-#                ]
-#        },
-#    "ungrouped": {}    
 }
 EOF
-#fi
 
 cat inventory.json
 

@@ -1,4 +1,7 @@
 {
+    "_meta": {
+        "hostvars": {}
+    },
     "db": {
         "hosts": ["reddit-db"],
         "vars": {
@@ -11,12 +14,4 @@
             "ansible_host": "35.195.231.80"
         }
     }
-#    "all": {
-#        "children": [
-#            "ungrouped",
-#            "db",
-#            "app"
-#                ]
-#        },
-#    "ungrouped": {}    
 }

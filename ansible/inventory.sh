@@ -65,3 +65,4 @@ cat <<EOF > inventory.json
 }
 EOF
 cat inventory.json
+

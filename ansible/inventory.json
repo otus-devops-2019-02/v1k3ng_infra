@@ -11,4 +11,10 @@
             "ansible_host": "35.195.168.114"
         }
     }
+    "all": {
+        "children": [
+            "ungrouped"
+                ]
+        },
+    "ungrouped": {}    
 }

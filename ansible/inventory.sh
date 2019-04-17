@@ -64,5 +64,6 @@ cat <<EOF > inventory.json
     "ungrouped": {}    
 }
 EOF
+fi
 cat inventory.json
 

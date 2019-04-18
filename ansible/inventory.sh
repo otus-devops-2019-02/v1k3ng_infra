@@ -45,13 +45,13 @@ cat <<EOF > inventory.json
     "db": {
         "hosts": ["reddit-db"],
         "vars": {
-            "ansible_host": "34.76.248.145"
+            "ansible_host": "34.76.139.210"
         }
     },
     "app": {
         "hosts": ["reddit-app"],
         "vars": {
-            "ansible_host": "34.76.10.204"
+            "ansible_host": "35.195.231.80"
         }
     }
 }

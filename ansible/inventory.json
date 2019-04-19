@@ -1,17 +1,17 @@
 {
     "_meta": {
-        "hostvars": {}
+       "hostvars": {}
     },
     "db": {
         "hosts": ["reddit-db"],
         "vars": {
-            "ansible_host": "34.76.10.204"
+            "ansible_host": "34.76.244.161"
         }
     },
     "app": {
         "hosts": ["reddit-app"],
         "vars": {
-            "ansible_host": "35.195.231.80"
+            "ansible_host": "35.241.200.148"
         }
     }
 }

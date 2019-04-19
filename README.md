@@ -1,3 +1,29 @@
+# Readme homework #11
+
+Структура:  
+ - Роль
+   - Плейбук
+     - Сценарий
+       - Таск
+
+Применение плейбука к хостам осуществляется при помощи
+команды **ansible-playbook**.  
+**--check** - произвести "пробный прогон" плейбука.  
+**--limit** - ограничиваем группу хостов, для которых применить плейбук  
+**--tags <tag_name>** - прогнать только те таски, в которых есть этот тег  
+
+
+**ansible/inventory.sh**  - Файл динамического инвентори. Через **gcloud** грепает по именам инстансов их внешние ip. На выходе выдает json.
+
+Для создания инфраструктуры нужно:  
+ - В директории terraform выполнить **terraform apply --auto-approve=true** для создания бакета под бэкенд
+ - В директории terraform/{stage, prod} выполнить **terraform apply --auto-approve=true** для создания нужной инфраструктуры
+ - В директории ansible выполнить **ansible-playbook site.yml** для установки нужных пакетов, клонирования репозитория и деплоя приложения
+
+Документация по модулям - https://docs.ansible.com/ansible/latest/list_of_all_modules.html  
+Документация по циклам в Ansible - https://docs.ansible.com/ansible/latest/playbooks_loops.html
+
+
 # Readme homework #10
 
 Кратко об ansible:

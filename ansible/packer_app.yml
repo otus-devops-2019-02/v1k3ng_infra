@@ -1,0 +1,15 @@
+---
+# set -e
+# # ruby install
+# # update info about repo
+# apt update
+
+# # install packages
+# apt install -y ruby-full ruby-bundler build-essential
+
+- name: Install ruby
+  hosts: all
+  become: true
+  tasks:
+    - name: Install packages
+      package: name=ruby-full,ruby-bundler,build-essential state=present

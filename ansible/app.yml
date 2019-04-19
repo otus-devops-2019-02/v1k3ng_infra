@@ -3,7 +3,8 @@
   hosts: app
   become: true
   vars:
-   db_host: 10.132.0.31
+  #  db_host: 10.132.0.33
+    db_host: "{{ hostvars['reddit-db']['ansible_default_ipv4']['address'] }}"
   tasks:
     - name: Add unit file for Puma
       copy:

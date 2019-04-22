@@ -1,4 +1,1 @@
----
-# defaults file for app
 db_host: "{{ hostvars['reddit-db']['ansible_default_ipv4']['address'] }}"
-env: local

@@ -4,7 +4,7 @@
   become: true
   vars:
   #  db_host: 10.132.0.33
-    db_host: "{{ hostvars['reddit-db']['ansible_default_ipv4']['address'] }}"
+  #   db_host: "{{ hostvars['reddit-db']['ansible_default_ipv4']['address'] }}"
   # tasks:
   #   - name: Add unit file for Puma
   #     copy:
@@ -27,4 +27,3 @@
   #   systemd: name=puma state=restarted
   roles:
     - app
-    

@@ -27,3 +27,5 @@
   #   systemd: name=puma state=restarted
   roles:
     - app
+    - jdauphant.nginx
+

@@ -35,7 +35,7 @@
         state: present
 
     - name: Install packages
-      package: name=mongodb-org state=present 
+      package: name=mongodb-org state=present
 
     - name: Enable and start mongod.service
       systemd:

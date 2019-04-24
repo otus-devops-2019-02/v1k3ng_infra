@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/otus-devops-2019-02/v1k3ng_infra.svg?branch=ansible-3)](https://travis-ci.com/otus-devops-2019-02/v1k3ng_infra)
+
 # Readme homework #11
 
 Структура:  

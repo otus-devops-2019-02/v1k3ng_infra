@@ -14,18 +14,18 @@ cp terraform/stage/terraform.tfvars.example terraform/stage/terraform.tfvars
 #touch terraform/stage/terraform.tfstate
 #touch terraform/prod/terraform.tftfstate
 cd terraform/ && terraform init
-cd terraform/ && terraform validate
+terraform validate
 #cd terraform/stage/ && terraform init
-cd terraform/stage/ && terraform get
-cd terraform/stage/ && terraform validate
+cd stage/ && terraform get
+terraform validate
 #cd terraform/prod/ && terraform init
-cd terraform/prod/ && terraform get
-cd terraform/prod/ && terraform validate
+cd ../prod/ && terraform get
+terraform validate
 
 echo "TERRAFORM TFLINT"
-cd terraform/ && tflint
+cd ../../ && tflint
 cd terraform/stage/ && tflint
-cd terraform/prod/ && tflint
+cd ../prod/ && tflint
 
 echo "ANSIBLE-LINT"
-cd ansible/playbooks && ansible-lint ./*
+cd ../../ansible/playbooks && ansible-lint ./*

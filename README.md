@@ -1,26 +1,3 @@
-[![Build Status](https://travis-ci.com/otus-devops-2019-02/v1k3ng_infra.svg?branch=ansible-3)](https://travis-ci.com/otus-devops-2019-02/v1k3ng_infra)
-
-# Readme homework #12
-Создать пустой шаблон роли
-```
-ansible-galaxy init <rolename>
-```
-В ansible.cfg
-```
-roles_path = ./roles # путь к хранилищу ролей
-vault_password_file = vault.key # файл с ключем для ansible-vault
-```
-Для шифрования используется мастер-пароль (aka **vault key**).
-Его нужно передавать команде ansible-playbook при запуске,
-либо указать файл с ключом в ansible.cfg. Не допускайте
-хранения этого ключ-файла в Git! Используйте для разных
-окружений разный **vault key**.
-```
-ansible-vault encrypt <filename> # зашифровать файл
-ansible-vault edit <filename> # редактировать шифрованный файл
-ansible-vault decrypt <filename> # расшифровать файл
-```
-
 # Readme homework #11
 
 Структура:  

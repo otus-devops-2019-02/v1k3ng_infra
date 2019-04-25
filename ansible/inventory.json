@@ -5,13 +5,13 @@
     "db": {
         "hosts": ["reddit-db"],
         "vars": {
-            "ansible_host": "23.251.135.84"
+            "ansible_host": "34.76.244.161"
         }
     },
     "app": {
         "hosts": ["reddit-app"],
         "vars": {
-            "ansible_host": "35.233.108.240"
+            "ansible_host": "35.241.200.148"
         }
     }
 }

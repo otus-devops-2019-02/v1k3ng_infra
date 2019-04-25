@@ -6,5 +6,5 @@
     - name: Clone repo
       git:
         repo: https://github.com/express42/reddit.git
-        dest: /home/appuser/reddit version="HEAD"
-      tags: skip_ansible_lint
+        dest: /home/appuser/reddit        
+

@@ -4,8 +4,9 @@ language: bash
 before_install:
 - curl https://raw.githubusercontent.com/express42/otus-homeworks/2019-02/run.sh | bash
 script:
-  - echo "this is test message!"
+  - git clone git@github.com:otus-devops-2019-02/v1k3ng_infra.git -b ansible-3
   - docker exec -e USER=appuser hw-test pwd
+  - docker exec -e USER=appuser hw-test ls -l
   - echo "packer validate"
   - echo "terraform validate"
   - echo "ansible-lint"  

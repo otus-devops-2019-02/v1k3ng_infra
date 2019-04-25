@@ -2,8 +2,37 @@ dist: trusty
 sudo: required
 language: bash
 before_install:
-- curl https://raw.githubusercontent.com/express42/otus-homeworks/2019-02/run.sh |
-  bash
+- curl https://raw.githubusercontent.com/express42/otus-homeworks/2019-02/run.sh | bash
+script:
+  - echo "packer validate"
+  - docker exec -e USER=appuser hw-test bash -c 'cp packer/variables.json.example packer/variables.json'  
+  - docker exec -e USER=appuser hw-test bash -c 'packer validate -var-file=packer/variables.json packer/app.json'
+  - docker exec -e USER=appuser hw-test bash -c 'packer validate -var-file=packer/variables.json packer/db.json'
+  - docker exec -e USER=appuser hw-test bash -c 'packer validate -var-file=packer/variables.json packer/immutable.json'
+  - docker exec -e USER=appuser hw-test bash -c 'packer validate -var-file=packer/variables.json packer/ubuntu16.json'
+  - echo "terraform validate"
+  - docker exec -e USER=appuser hw-test bash -c 'cp terraform/terraform.tfvars.example terraform/terraform.tfvars'
+  - docker exec -e USER=appuser hw-test bash -c 'cp terraform/prod/terraform.tfvars.example terraform/prod/terraform.tfvars'
+  - docker exec -e USER=appuser hw-test bash -c 'cp terraform/stage/terraform.tfvars.example terraform/stage/terraform.tfvars'
+  - docker exec -e USER=appuser hw-test bash -c 'touch terraform/stage/terraform.tfstate'
+  - docker exec -e USER=appuser hw-test bash -c 'touch terraform/prod/terraform.tfstate'
+  - docker exec -e USER=appuser hw-test bash -c 'touch /root/.ssh/appuser.pub'
+  - docker exec -e USER=appuser hw-test bash -c 'touch /root/.ssh/appuser'
+  - docker exec -e USER=appuser hw-test bash -c 'rm -rf terraform/stage/backend.tf'
+  - docker exec -e USER=appuser hw-test bash -c 'rm -rf terraform/prod/backend.tf'
+  - docker exec -e USER=appuser hw-test bash -c 'cd terraform/ && terraform init'
+  - docker exec -e USER=appuser hw-test bash -c 'cd terraform/ && terraform validate'
+  - docker exec -e USER=appuser hw-test bash -c 'cd terraform/stage/ && terraform get'
+  - docker exec -e USER=appuser hw-test bash -c 'cd terraform/stage/ && terraform init'
+  - docker exec -e USER=appuser hw-test bash -c 'cd terraform/stage/ && terraform validate'
+  - docker exec -e USER=appuser hw-test bash -c 'cd terraform/prod/ && terraform get'
+  - docker exec -e USER=appuser hw-test bash -c 'cd terraform/prod/ && terraform init'
+  - docker exec -e USER=appuser hw-test bash -c 'cd terraform/prod/ && terraform validate'
+  - docker exec -e USER=appuser hw-test bash -c 'cd terraform/ && tflint'
+  - docker exec -e USER=appuser hw-test bash -c 'cd terraform/stage/ && tflint'
+  - docker exec -e USER=appuser hw-test bash -c 'cd terraform/prod/ && tflint'
+  - echo "ansible-lint"  
+  - docker exec -e USER=appuser hw-test bash -c 'cd ansible/playbooks && ansible-lint ./*'
 notifications:
   slack:
     rooms:

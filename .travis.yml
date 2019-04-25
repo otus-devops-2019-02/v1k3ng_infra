@@ -5,6 +5,10 @@ before_install:
 - curl https://raw.githubusercontent.com/express42/otus-homeworks/2019-02/run.sh | bash
 script:
   - echo "this is test message!"
+  - docker exec -e USER=appuser hw-test pwd
+  - echo "packer validate"
+  - echo "terraform validate"
+  - echo "ansible-lint"  
 notifications:
   slack:
     rooms:

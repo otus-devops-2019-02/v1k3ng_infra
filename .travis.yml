@@ -18,6 +18,8 @@ script:
   - docker exec -e USER=appuser hw-test bash -c 'cp terraform/terraform.tfvars.example terraform/terraform.tfvars'
   - docker exec -e USER=appuser hw-test bash -c 'cp terraform/prod/terraform.tfvars.example terraform/prod/terraform.tfvars'
   - docker exec -e USER=appuser hw-test bash -c 'cp terraform/stage/terraform.tfvars.example terraform/stage/terraform.tfvars'
+  - docker exec -e USER=appuser hw-test bash -c 'touch terraform/stage/terraform.tfstate'
+  - docker exec -e USER=appuser hw-test bash -c 'touch terraform/prod/terraform.tftfstate'
   - docker exec -e USER=appuser hw-test bash -c 'cd terraform/ && terraform init'
   - docker exec -e USER=appuser hw-test bash -c 'cd terraform/ && terraform validate'
   - docker exec -e USER=appuser hw-test bash -c 'cd terraform/stage/ && terraform init'

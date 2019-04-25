@@ -8,21 +8,21 @@ script:
   # - docker exec -e USER=appuser hw-test pwd
   # - docker exec -e USER=appuser hw-test ls -l
   # - docker exec -e USER=appuser hw-test head README.md
-  - docker exec -e USER=appuser hw-test ls -l
+  - docker exec -e USER=appuser hw-test cp packer/variables.json.example packer/variables.json
   - echo "packer validate"
   - docker exec -e USER=appuser hw-test packer validate -var-file=packer/variables.json packer/app.json
   - docker exec -e USER=appuser hw-test packer validate -var-file=packer/variables.json packer/db.json
   - docker exec -e USER=appuser hw-test packer validate -var-file=packer/variables.json packer/immutable.json
   - docker exec -e USER=appuser hw-test packer validate -var-file=packer/variables.json packer/ubuntu16.json
   - echo "terraform validate"
-  - cd terraform/ && terraform validate
-  - cd terraform/stage/ && terraform validate
-  - cd terraform/prod/ && terraform validate
-  - cd terraform/ && tflint
-  - cd terraform/stage/ && tflint
-  - cd terraform/prod/ && tflint
+  - docker exec -e USER=appuser hw-test cd terraform/ && terraform validate
+  - docker exec -e USER=appuser hw-test cd terraform/stage/ && terraform validate
+  - docker exec -e USER=appuser hw-test cd terraform/prod/ && terraform validate
+  - docker exec -e USER=appuser hw-test cd terraform/ && tflint
+  - docker exec -e USER=appuser hw-test cd terraform/stage/ && tflint
+  - docker exec -e USER=appuser hw-test cd terraform/prod/ && tflint
   - echo "ansible-lint"  
-  - cd ansible/playbooks && ansible-lint ./*
+  - docker exec -e USER=appuser hw-test cd ansible/playbooks && ansible-lint ./*
 notifications:
   slack:
     rooms:

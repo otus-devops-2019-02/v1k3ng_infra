@@ -11,8 +11,8 @@ echo "TERRAFORM VALIDATE"
 cp terraform/terraform.tfvars.example terraform/terraform.tfvars
 cp terraform/prod/terraform.tfvars.example terraform/prod/terraform.tfvars
 cp terraform/stage/terraform.tfvars.example terraform/stage/terraform.tfvars
-#touch terraform/stage/terraform.tfstate
-#touch terraform/prod/terraform.tftfstate
+touch terraform/stage/terraform.tfstate
+touch terraform/prod/terraform.tfstate
 cd terraform/ && terraform init
 terraform validate
 #cd terraform/stage/ && terraform init

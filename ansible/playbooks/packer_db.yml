@@ -9,7 +9,7 @@
 # # add repo
 # echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" > /etc/apt/sources.list.d/mongodb-org-3.2.list
 
-# # update info about repo 
+# # update info about repo
 # apt update
 
 # # install package

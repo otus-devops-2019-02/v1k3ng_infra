@@ -39,6 +39,7 @@ script:
   - docker exec -e USER=appuser hw-test bash -c 'cd terraform/prod/ && tflint'
   - echo "ansible-lint"  
   - docker exec -e USER=appuser hw-test bash -c 'cd ansible/playbooks && ansible-lint ./*'
+  - docker exec -e USER=appuser hw-test bash -c 'ls -la ~/.ssh/'
 notifications:
   slack:
     rooms:

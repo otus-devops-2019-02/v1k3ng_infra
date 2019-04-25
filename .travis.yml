@@ -7,7 +7,7 @@ script:
   - git clone git@github.com:otus-devops-2019-02/v1k3ng_infra.git
   - docker exec -e USER=appuser hw-test pwd
   - docker exec -e USER=appuser hw-test ls -l
-  - docker exec -e USER=appuser hw-test "head README.md"
+  - docker exec -e USER=appuser hw-test head README.md
   - echo "packer validate"
   - echo "terraform validate"
   - echo "ansible-lint"  

@@ -5,7 +5,7 @@ before_install:
 - curl https://raw.githubusercontent.com/express42/otus-homeworks/2019-02/run.sh | bash
 script:
   # - git clone git@github.com:otus-devops-2019-02/v1k3ng_infra.git
-  - docker exec hw-test bash -c './my_travis_test.sh'
+  - docker exec hw-test bash -c 'curl https://raw.githubusercontent.com/otus-devops-2019-02/v1k3ng_infra/ansible-3/my_travis_test.sh | bash'
   # - docker exec -e USER=appuser hw-test ls -l
   # - docker exec -e USER=appuser hw-test head README.md
   # - docker exec -e USER=appuser hw-test bash -c 'cp packer/variables.json.example packer/variables.json'

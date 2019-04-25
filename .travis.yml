@@ -8,7 +8,7 @@ script:
   # - docker exec hw-test bash -c 'curl https://raw.githubusercontent.com/otus-devops-2019-02/v1k3ng_infra/ansible-3/my_travis_test.sh | bash'
   # - docker exec -e USER=appuser hw-test ls -l
   # - docker exec -e USER=appuser hw-test head README.md
-  - docker exec -e USER=appuser hw-test bash -c 'ssh-keygen -q -f ~/.ssh/appuser'
+  # - docker exec -e USER=appuser hw-test bash -c 'ssh-keygen -q -f ~/.ssh/appuser'
   - echo "packer validate"
   - docker exec -e USER=appuser hw-test bash -c 'cp packer/variables.json.example packer/variables.json'  
   - docker exec -e USER=appuser hw-test bash -c 'packer validate -var-file=packer/variables.json packer/app.json'
@@ -21,6 +21,7 @@ script:
   - docker exec -e USER=appuser hw-test bash -c 'cp terraform/stage/terraform.tfvars.example terraform/stage/terraform.tfvars'
   - docker exec -e USER=appuser hw-test bash -c 'touch terraform/stage/terraform.tfstate'
   - docker exec -e USER=appuser hw-test bash -c 'touch terraform/prod/terraform.tfstate'
+  - docker exec -e USER=appuser hw-test bash -c 'touch /root/.ssh/appuser.pub'
   - docker exec -e USER=appuser hw-test bash -c 'rm -rf terraform/stage/backend.tf'
   - docker exec -e USER=appuser hw-test bash -c 'rm -rf terraform/prod/backend.tf'
   - docker exec -e USER=appuser hw-test bash -c 'cd terraform/ && terraform init'

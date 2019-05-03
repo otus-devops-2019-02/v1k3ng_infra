@@ -1,4 +1,4 @@
 ---
 - name: Install packages
   package: name=ruby-full,ruby-bundler,build-essential state=present
-  
+  tags: only_install

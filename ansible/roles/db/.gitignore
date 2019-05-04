@@ -23,6 +23,3 @@ vault.key
 
 #virtualenv
 venv/
-
-#delete role db
-db_removed

@@ -1,0 +1,13 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  tasks:
+    # - name: Clean artifact path
+    #   file:
+    #     state: absent
+    #     path: "{{ lookup('env', 'HOME') }}/.ssh/known_hosts"  
+    - name: Install python for Ansible
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal python-zipstream)
+      become: true
+      changed_when: false

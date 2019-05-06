@@ -10,6 +10,9 @@
 - name: Install ruby
   hosts: all
   become: true
-  tasks:
-    - name: Install packages
-      package: name=ruby-full,ruby-bundler,build-essential state=present
+  # tasks:
+  #   - name: Install packages
+  #     package: name=ruby-full,ruby-bundler,build-essential state=present
+  roles:
+    - app
+    - jdauphant.nginx

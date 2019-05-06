@@ -20,3 +20,9 @@ vault.key
 .molecule
 .cache
 .pytest_cache
+
+#virtualenv
+venv/
+
+#delete role db
+db_removed

@@ -13,7 +13,7 @@ packer/variables.json
 jdauphant.nginx
 vault.key
 
-#vagrant
+#vagrant&molecule
 .vagrant/
 *.log
 *.pyc

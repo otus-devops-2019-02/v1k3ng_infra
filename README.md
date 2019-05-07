@@ -29,10 +29,6 @@
 **molecule verify** - прогнать тесты test_default.py  
 
 
-
-
-
-
 # Readme homework #12
 Создать пустой шаблон роли
 ```

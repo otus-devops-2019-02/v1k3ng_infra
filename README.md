@@ -10,7 +10,6 @@
 **vagrant ssh <instance_name>** - коннект по ssh  
 **vagrant destroy -f** - удалить созданные инстансы  
 
-
 Провижининг происходит автоматически при запуске новой машины. Если же мы хотим применить провижининг на уже запущенной машине, то необходимо использовать команду **vagrant provision <instance_name>**.  
 
 Вы можете посмотреть, какой инвентори файл Vagrant сгенерировал при провижининге.  
@@ -19,7 +18,6 @@
 В случае, если у вас vagrant provision падает с ошибкой из-за невозможности записать в директорию /home/ubuntu, проверьте под каким пользователем Vagrant выполняет плейбуки.  
 
 **molecule init scenario --scenario-name default -r <role_name> -d <provider_name>** - создать сценарий для тестирования  
-
 **molecule/default/tests/test_default.py** - тесты  
 **molecule/default/molecule.yml** - плейбук для создания инстанса  
 **molecule list** - список инстансов molecule  

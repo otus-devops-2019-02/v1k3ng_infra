@@ -1,5 +1,32 @@
 [![Build Status](https://travis-ci.com/otus-devops-2019-02/v1k3ng_infra.svg?branch=ansible-3)](https://travis-ci.com/otus-devops-2019-02/v1k3ng_infra)
 
+# Readme homework #13
+
+Описание характеристик инстансов содержится в **vagrantfile**  
+
+**vagrant up** - создать описанные в vagrantfile инстансы.  
+**vagrant box list** - список локально хранящихся боксов  
+**vagrant status** - статус инстансов  
+**vagrant ssh <instance_name>** - коннект по ssh  
+**vagrant destroy -f** - удалить созданные инстансы  
+
+Провижининг происходит автоматически при запуске новой машины. Если же мы хотим применить провижининг на уже запущенной машине, то необходимо использовать команду **vagrant provision <instance_name>**.  
+
+Вы можете посмотреть, какой инвентори файл Vagrant сгенерировал при провижининге.  
+**cat .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory**  
+
+В случае, если у вас vagrant provision падает с ошибкой из-за невозможности записать в директорию /home/ubuntu, проверьте под каким пользователем Vagrant выполняет плейбуки.  
+
+**molecule init scenario --scenario-name default -r <role_name> -d <provider_name>** - создать сценарий для тестирования  
+**molecule/default/tests/test_default.py** - тесты  
+**molecule/default/molecule.yml** - плейбук для создания инстанса  
+**molecule list** - список инстансов molecule  
+**molecule create** - создать инстанс по molecule.yml  
+**molecule login -h <instance_name>** - подключиться по ssh
+**molecule converge** - применить playbook.yml в котором вызывается нужная роль для инстаносов  
+**molecule verify** - прогнать тесты test_default.py  
+
+
 # Readme homework #12
 Создать пустой шаблон роли
 ```

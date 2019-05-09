@@ -1,4 +1,4 @@
-db_host: "{{ hostvars['reddit-db']['ansible_default_ipv4']['address'] }}"
+deploy_user: "vagrant"
 nginx_sites:
   default:
     - listen 80
